@@ -10,7 +10,6 @@
 		D37ABB9F2B69714700529F1F /* QuickMathsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ABB9E2B69714700529F1F /* QuickMathsApp.swift */; };
 		D37ABBA32B69714800529F1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37ABBA22B69714800529F1F /* Assets.xcassets */; };
 		D37ABBA62B69714800529F1F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D37ABBA52B69714800529F1F /* Preview Assets.xcassets */; };
-		D37ABBAD2B6972C100529F1F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ABBAC2B6972C100529F1F /* TabBarView.swift */; };
 		D37ABBC92B69731200529F1F /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ABBB02B69731200529F1F /* GameManager.swift */; };
 		D37ABBCA2B69731200529F1F /* TimerConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ABBB22B69731200529F1F /* TimerConfigView.swift */; };
 		D37ABBCB2B69731200529F1F /* GameQuestionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37ABBB42B69731200529F1F /* GameQuestionResult.swift */; };
@@ -35,7 +34,6 @@
 		D37ABB9E2B69714700529F1F /* QuickMathsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickMathsApp.swift; sourceTree = "<group>"; };
 		D37ABBA22B69714800529F1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D37ABBA52B69714800529F1F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D37ABBAC2B6972C100529F1F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		D37ABBB02B69731200529F1F /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D37ABBB22B69731200529F1F /* TimerConfigView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerConfigView.swift; sourceTree = "<group>"; };
 		D37ABBB42B69731200529F1F /* GameQuestionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameQuestionResult.swift; sourceTree = "<group>"; };
@@ -86,7 +84,8 @@
 			isa = PBXGroup;
 			children = (
 				D37ABB9E2B69714700529F1F /* QuickMathsApp.swift */,
-				D37ABBAC2B6972C100529F1F /* TabBarView.swift */,
+				D37ABBB32B69731200529F1F /* Enums */,
+				D37ABBAF2B69731200529F1F /* Managers */,
 				D37ABBAE2B69731200529F1F /* Views */,
 				D37ABBA22B69714800529F1F /* Assets.xcassets */,
 				D37ABBA42B69714800529F1F /* Preview Content */,
@@ -105,15 +104,10 @@
 		D37ABBAE2B69731200529F1F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				D37ABBAF2B69731200529F1F /* Managers */,
-				D37ABBB12B69731200529F1F /* Timer */,
-				D37ABBB32B69731200529F1F /* Enums */,
-				D37ABBB62B69731200529F1F /* Game */,
 				D37ABBB82B69731200529F1F /* TabBarView.swift */,
-				D37ABBB92B69731200529F1F /* GameConfig */,
 				D37ABBBD2B69731200529F1F /* GameSelectionView.swift */,
-				D37ABBBE2B69731200529F1F /* GameObjects */,
-				D37ABBC02B69731200529F1F /* ChildObjectStructs */,
+				D37ABBB92B69731200529F1F /* GameConfig */,
+				D37ABBB62B69731200529F1F /* Game */,
 				D37ABBC42B69731200529F1F /* ViewComponents */,
 			);
 			path = Views;
@@ -123,6 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				D37ABBB02B69731200529F1F /* GameManager.swift */,
+				D37ABBBE2B69731200529F1F /* GameObjects */,
+				D37ABBC02B69731200529F1F /* ChildObjectStructs */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -155,9 +151,10 @@
 		D37ABBB92B69731200529F1F /* GameConfig */ = {
 			isa = PBXGroup;
 			children = (
-				D37ABBBA2B69731200529F1F /* GameConfigHighScoreView.swift */,
 				D37ABBBB2B69731200529F1F /* GameConfigView.swift */,
 				D37ABBBC2B69731200529F1F /* GameConfigSlidersView.swift */,
+				D37ABBBA2B69731200529F1F /* GameConfigHighScoreView.swift */,
+				D37ABBB12B69731200529F1F /* Timer */,
 			);
 			path = GameConfig;
 			sourceTree = "<group>";
@@ -173,9 +170,9 @@
 		D37ABBC02B69731200529F1F /* ChildObjectStructs */ = {
 			isa = PBXGroup;
 			children = (
-				D37ABBC12B69731200529F1F /* TimerManager.swift */,
 				D37ABBC22B69731200529F1F /* GameDataObject.swift */,
 				D37ABBC32B69731200529F1F /* GameQuestionManager.swift */,
+				D37ABBC12B69731200529F1F /* TimerManager.swift */,
 			);
 			path = ChildObjectStructs;
 			sourceTree = "<group>";
@@ -191,9 +188,9 @@
 		D37ABBC52B69731200529F1F /* Countdown */ = {
 			isa = PBXGroup;
 			children = (
-				D37ABBC62B69731200529F1F /* CountdownTimer.swift */,
 				D37ABBC72B69731200529F1F /* GameCountdownView.swift */,
 				D37ABBC82B69731200529F1F /* ProgressBar.swift */,
+				D37ABBC62B69731200529F1F /* CountdownTimer.swift */,
 			);
 			path = Countdown;
 			sourceTree = "<group>";
@@ -273,7 +270,6 @@
 				D37ABBD02B69731200529F1F /* GameConfigView.swift in Sources */,
 				D37ABBD62B69731200529F1F /* GameQuestionManager.swift in Sources */,
 				D37ABBD12B69731200529F1F /* GameConfigSlidersView.swift in Sources */,
-				D37ABBAD2B6972C100529F1F /* TabBarView.swift in Sources */,
 				D37ABBC92B69731200529F1F /* GameManager.swift in Sources */,
 				D37ABBD52B69731200529F1F /* GameDataObject.swift in Sources */,
 				D37ABBCE2B69731200529F1F /* TabBarView.swift in Sources */,
