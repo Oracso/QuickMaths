@@ -12,3 +12,17 @@ enum GameQuestionResult {
     case incorrect
     case setup
 }
+
+extension GameQuestionResult {
+    func displayText() -> String {
+        switch self {
+        case .correct:
+            return "You got it"
+        case .incorrect:
+            return "You messed up, try again"
+        case .setup:
+            return "Are you ready to play"
+        }
+    }
+}
+

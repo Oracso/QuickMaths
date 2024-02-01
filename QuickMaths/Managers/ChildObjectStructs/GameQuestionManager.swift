@@ -11,6 +11,8 @@ struct GameQuestionManager {
     
     var question: String = " "
     
+    var inputText: String = " "
+    
     var answer: Int?
     var realAnswer: Int = 0
     

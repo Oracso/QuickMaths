@@ -8,37 +8,38 @@
 import SwiftUI
 
 struct GameView: View {
+    @Environment(\.dismiss) private var dismiss
     @StateObject var gameManager: GameManager
-    
-    func timeOfQuestion() {
-        gameManager.gameDataObject.roundDuration += 1
-        gameManager.gameDataObject.roundQuestionDuration[gameManager.gameDataObject.roundDuration] = gameManager.gameDataObject.questionNumber
-    }
-    
     var body: some View {
+        
         VStack {
+            switch gameManager.gameStatus {
+            case .config:
+                
+            case .active:
+                GameActiveView(gameManager: gameManager)
+            case .results:
+                GameResultsView(gameManager: gameManager)
+            case .stop:
+                dismiss()
+            }
             GameCountdownView(timerProgress: $gameManager.timerManager.timerProgress, secondsRemaining: $gameManager.timerManager.secondsRemaining)
             
+//            Spacer()
+//            
+//            if gameManager.gameStarted {
+//                
+//            } else {
+//                
+//            }
+//            
+//            Spacer()
             
-            
-        }
-        .onAppear() {
-            gameManager.timerManager.hasTimerStarted = true
         }
         
-        .onReceive(gameManager.timerManager.timer) { timer in
-            guard gameManager.timerManager.hasTimerStarted else { return }
-            if gameManager.timerManager.hasTimerStarted && gameManager.timerManager.secondsRemaining > 0 {
-                gameManager.timerManager.secondsRemaining -= 1
-                gameManager.secondsRemaining -= 1
-                timeOfQuestion()
-            } else if gameManager.timerManager.secondsRemaining == 0 {
-                gameManager.timerManager.hasTimerStarted = true
-                gameManager.timerManager.hasTimerStarted = false
-                gameManager.roundComplete = true
-                
-            }
-        }
+        
+        .navigationBarBackButtonHidden()
+        .toolbar(.hidden, for: .tabBar)
         
     }
 }

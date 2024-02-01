@@ -9,7 +9,7 @@ import Foundation
 
 struct GameDataObject {
     
-    var questionTries = 0
+    var questionAttempts = 0
     var questionNumber = 0
     
     var correctAnswers = 0
@@ -34,3 +34,18 @@ struct GameDataObject {
 //        roundDuration = 0
 //    }
 //}
+
+
+
+
+extension GameDataObject {
+    func dictionaryToJsonString(dictionary: [Int:Int]) -> String {
+        do {
+            let jsonData = try JSONEncoder().encode(dictionary)
+            return String(data: jsonData, encoding: .utf8)!
+        } catch {
+            print(error.localizedDescription)
+            return ""
+        }
+    }
+}

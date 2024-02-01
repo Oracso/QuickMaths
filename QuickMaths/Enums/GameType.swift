@@ -27,3 +27,12 @@ extension GameType {
         }
     }
 }
+
+extension GameType {
+    func gameSymbol() -> String {
+        switch self {
+        case .addition:
+            "+"
+        }
+    }
+}

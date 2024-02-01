@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct GameSelectionView: View {
+    @EnvironmentObject var database: Database
     var body: some View {
         NavigationStack {
             List {
                 ForEach(GameType.allCases) { gameType in
                     NavigationLink {
-                        GameConfigView(gameType: gameType)
+//                        GameView(gameManager: <#T##GameManager#>)
+//                        GameConfigView(gameType: gameType)
                     } label: {
                         Text(gameType.gameName)
                     }
@@ -23,10 +25,21 @@ struct GameSelectionView: View {
                 
             }
             .navigationTitle("Games")
+            
+            
+ 
+            
+            
+            
+        
+        
+        
+            
         }
     }
 }
 
 #Preview {
     GameSelectionView()
+        .environmentObject(Database())
 }

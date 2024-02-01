@@ -20,7 +20,7 @@ struct GameConfigView: View {
                 .padding(.bottom)
             
             NavigationLink {
-                GameView(gameManager: .createGameManager(gameType, gameConfig))
+//                GameView(gameManager: .createGameManager(gameType, gameConfig))
             } label: {
                 Text("Play")
             }

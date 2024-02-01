@@ -1,13 +1,16 @@
 //
 //  TabBarView.swift
-//  QuickMathsRemake
+//  QuickMaths
 //
-//  Created by Oscar Hardy on 29/01/2024.
+//  Created by Oscar Hardy on 31/01/2024.
 //
 
 import SwiftUI
 
 struct TabBarView: View {
+    
+//    @EnvironmentObject var ads: AppDataStore
+    
     var body: some View {
         TabView {
             GameSelectionView()
@@ -15,14 +18,17 @@ struct TabBarView: View {
                     Label("Games", systemImage: "gamecontroller")
                 }
             
-//            AllGameLogsView()
-//                .tabItem {
-//                    Label("Saved Logs", systemImage: "bookmark")
-//                }
+            AllGameLogsView()
+                .tabItem {
+                    Label("Saved Logs", systemImage: "bookmark")
+                }
+            
         }
+        
     }
 }
 
 #Preview {
     TabBarView()
+//        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
 }
