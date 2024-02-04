@@ -8,21 +8,29 @@
 import SwiftUI
 
 struct GameConfigSlidersView: View {
-    @ObservedObject var gameConfig: GameConfigObject
+    
+    init(_ numberFreq: Binding<Double>, _ numberRange: Binding<Double>) {
+        self._numberFreq = numberFreq
+        self._numberRange = numberRange
+    }
+    
+    @Binding var numberFreq: Double
+    @Binding var numberRange: Double
+    
     var body: some View {
         VStack {
-            Text("Number Frequency: \(String(format: "%.f", gameConfig.gameNumberFreq))")
-            Slider(value: $gameConfig.gameNumberFreq, in: 2...10, step: 1)
-            
-            
-            Text("Number Range: \(String(format: "%.f", gameConfig.gameNumberRange))")
-            Slider(value: $gameConfig.gameNumberRange, in: 10...100, step: 5)
+            Text("Number Frequency: \(String(format: "%.f", numberFreq))")
+            Slider(value: $numberFreq, in: 2...10, step: 1)
+
+            Text("Number Range: \(String(format: "%.f", numberRange))")
+            Slider(value: $numberRange, in: 10...100, step: 5)
             
         }
         .padding(.horizontal)
+        
     }
 }
 
 #Preview {
-    GameConfigSlidersView(gameConfig: GameConfigObject())
+    GameConfigSlidersView(.createBinding(2), .createBinding(10))
 }

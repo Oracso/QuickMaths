@@ -9,10 +9,6 @@ import Foundation
 
 class Calculator {
     
-    
-    // Basic Operations
-    
-
     func sum(_ sample: [Double]) -> Double {
         var sum: Double = 0
         for number in sample {
@@ -39,44 +35,6 @@ class Calculator {
     func square(_ number: Double) -> Double {
         return number * number
     }
-    
-    
-    // Get Random Data To Test
-    
-    func returnRandomDoubleArray(n: Int) -> [Double] {
-        var data: [Double] = []
-        let count = 1...n
-        for number in count {
-            data.append(Double(number))
-        }
-        let shuffledData = data.shuffled()
-        return shuffledData
-    }
-    
-    
-    func returnRandomIntArray(n: Int) -> [Int] {
-        var data: [Int] = []
-        let count = 1...n
-        for number in count {
-            data.append(number)
-        }
-        let shuffledData = data.shuffled()
-        return shuffledData
-    }
-    
-    
-    
-    //
-    
-    init() {
-        print("Calculator Created")
-    }
-    
-    deinit {
-        print("Calculator Destroyed")
-    }
-    
- 
     
 }
 

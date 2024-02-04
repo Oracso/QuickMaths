@@ -19,8 +19,8 @@ class GameManager: ObservableObject {
     
     let gameType: GameType
     
-    var numberFreq = 2.0
-    var numberRange = 10.0
+    @Published var numberFreq = 2.0
+    @Published var numberRange = 10.0
     
     @Published var dataObject = GameDataObject()
     
@@ -28,13 +28,11 @@ class GameManager: ObservableObject {
     
     @Published var timerManager = TimerManager()
     
-    
-    @Published var gameStarted = false
     @Published var gameStatus: GameStatus = .config
     
     @Published var saveGame = true
-//    @Published var roundComplete = false
     
+    var gameLog: GameLog?
     
 }
 
@@ -52,56 +50,36 @@ extension GameManager {
     )
 }
 
-
-
-// TODO: convert this into init
 extension GameManager {
-    static func createGameManager(_ gameType: GameType, _ gameConfig: GameConfigObject) -> GameManager {
-        let gameManager = GameManager(gameType: gameType)
-        gameManager.numberFreq = gameConfig.gameNumberFreq
-        gameManager.numberRange = gameConfig.gameNumberRange
-        
-        gameManager.timerManager.timerDuration = TimerManager.lengthToSeconds(gameConfig.timerLength)
-        gameManager.timerManager.secondsRemaining = gameManager.timerManager.timerDuration
-        
-        gameManager.gameStarted = true
-        
-        gameManager.getNewQuestion()
-        
-        gameManager.startTimer()
-        
-        return gameManager
+    func configureGame() {
+        timerManager.totalDuration = timerManager.timerLength.rawValue
+        timerManager.secondsRemaining = timerManager.totalDuration
+        getNewQuestion()
+        gameStatus = .active
+        startTimer()
     }
 }
-
-
-
-extension GameManager {
-    func recordTimePassed() {
-        dataObject.roundDuration += 1
-        dataObject.roundQuestionDuration[dataObject.roundDuration] = dataObject.questionNumber
-    }
-}
-
 
 extension GameManager {
     func submitAnswer() {
-//        checkAndSetAnswerToggle()
         let ans = checkAnswer(answer: questionManager.answer ?? 0)
         if ans == true {
             questionManager.result = .correct
+            dataObject.gameQuestionDurations[dataObject.questionNumber] = timerManager.questionDuration
+            timerManager.questionDuration = 0
             dataObject.correctAnswers += 1
             addTry()
-            getNewQuestion()
             dataObject.questionAttempts = 0
+            getNewQuestion()
         } else if ans == false {
             questionManager.result = .incorrect
             dataObject.incorrectAnswers += 1
             addTry()
+            resetQuestionFields()
         }
     }
     
-    func checkAnswer(answer: Int) -> Bool {
+    func checkAnswer(answer: Double) -> Bool {
         if answer == questionManager.realAnswer {
             return true
         } else if answer != questionManager.realAnswer {
@@ -112,16 +90,23 @@ extension GameManager {
     
     
     func addTry() {
-        // Use the number of questions answered correctly to check last bit of dictionary
-        dataObject.roundQuestionAttempts[dataObject.questionNumber] = dataObject.questionAttempts
+        dataObject.gameQuestionAttempts[dataObject.questionNumber] = dataObject.questionAttempts
     }
+    
     
     func getNewQuestion() {
         resetQuestionFields()
-        let result = quickMathsManager.simpleAddition(numbers: Int(numberFreq), range: Int(numberRange))
-        questionManager.question = "\(result.question) ??"
+        let result = quickMathsManager.getResult(gameType, Int(numberFreq), Int(numberRange))
+        if gameType == .whichSign {
+            questionManager.question = result.question
+        } else {
+            questionManager.question = "\(result.question) = ??"
+        }
         questionManager.realAnswer = result.answer
+        print(result.answer)
         dataObject.questionNumber += 1
+        dataObject.gameQuestions[dataObject.questionNumber] = result.question
+        dataObject.gameAnswers[dataObject.questionNumber] = result.answer
     }
     
 }
@@ -143,12 +128,13 @@ extension GameManager {
     }
     
     @objc func fireTimer() {
-        print("Tick")
         self.timerManager.secondsRemaining -= 1
-        self.recordTimePassed()
+        timerManager.questionDuration += 1
         if self.timerManager.secondsRemaining == 0 {
+            dataObject.gameQuestionDurations[dataObject.questionNumber] = timerManager.questionDuration
             self.stopTimer()
-            self.gameStarted = false
+            self.gameStatus = .results
+            createGameLog()
         }
     }
     
@@ -156,4 +142,46 @@ extension GameManager {
         timerManager.timer?.invalidate()
     }
     
+}
+
+
+extension GameManager {
+    
+    func restartGame() {
+        gameLog = nil
+        dataObject = GameDataObject()
+        questionManager = GameQuestionManager()
+        let previousTimerLength = timerManager.timerLength
+        timerManager = TimerManager()
+        timerManager.timerLength = previousTimerLength
+        gameStatus = .config
+    }
+    
+    func stopGame() {
+        gameStatus = .stop
+    }
+    
+}
+
+extension GameManager {
+    func createGameLog() {
+        let modifier = CoreDataModifier(CoreDataManager.shared.container.viewContext)
+        
+        let gameLog = modifier.createGameLog(
+            date: timerManager.dateStarted,
+            duration: timerManager.totalDuration,
+            gameType: gameType,
+            numberFreq: numberFreq,
+            numberRange: numberRange,
+            questionsAsked: dataObject.questionNumber,
+            correctAnswers: dataObject.correctAnswers,
+            incorrectAnswers: dataObject.incorrectAnswers,
+            gameQuestionAttempts: dataObject.gameQuestionAttempts,
+            gameQuestionDurations: dataObject.gameQuestionDurations,
+            gameQuestions: dataObject.gameQuestions,
+            gameAnswers: dataObject.gameAnswers
+        )
+        
+        self.gameLog = gameLog
+    }
 }

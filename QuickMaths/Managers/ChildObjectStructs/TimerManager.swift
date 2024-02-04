@@ -11,37 +11,21 @@ struct TimerManager {
     
     var timer: Timer?
   
+    var timerLength: TimerLength = .zero
+    
+    var totalDuration = 0
+    
     var secondsRemaining = 0
 
-    var timerDuration = 0
+    var questionDuration = 0
     
     var timerProgress: Double {
         get {
-            Double(secondsRemaining) / Double(timerDuration)
+            Double(secondsRemaining) / Double(totalDuration)
         }
         set {  }
     }
     
     var dateStarted: Date = .now
     
-}
-
-
-// TODO: how to stop timer being set at 0 ?
-
-// TODO: Where to put this func
-extension TimerManager {
-    static func lengthToSeconds(_ timerLength: Double) -> Int {
-        switch timerLength {
-        // TODO: For Delete --- Testing code
-        case 0.5: 5
-//        case 0.5: 30
-        case 1: 60
-        case 1.5: 90
-        case 2: 120
-        case 2.5: 150
-        case 3: 180
-        default: 0
-        }
-    }
 }

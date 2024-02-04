@@ -8,44 +8,39 @@
 import SwiftUI
 
 struct AllGameLogsView: View {
-    @EnvironmentObject var database:Database
+    @EnvironmentObject var ads: AppDataStore
     var body: some View {
         NavigationStack {
-            List(database.allGameLogs) { gameLog in
+            List(ads.objects.gameLogOS.gameLogs) { gameLog in
                 NavigationLink {
                     GameLogDetailView(gameLog)
                 } label: {
                     GameLogListView(gameLog)
                 }
-                
             }
             
             .navigationTitle("All Game Logs")
             
-            
-            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        //                    StatsView()
+                        StatsView()
                     } label: {
                         Image(systemName: "chart.xyaxis.line")
                     }
-                    
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink {
-                        //                        SettingsView()
+                        SettingsView()
                     } label: {
                         Image(systemName: "person.circle")
                     }
                 }
-                
             }
             
             .overlay {
-                if database.allGameLogs.isEmpty {
+                if ads.objects.gameLogOS.gameLogs.isEmpty {
                     ContentUnavailableView {
                         Label("No game logs found", systemImage: "tray.fill")
                     } description: {
@@ -54,16 +49,12 @@ struct AllGameLogsView: View {
                 }
             }
             
-            
         }
-        
-        
-        
         
     }
 }
 
 #Preview {
     AllGameLogsView()
-        .environmentObject(Database())
+        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
 }

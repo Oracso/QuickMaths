@@ -11,8 +11,6 @@ import CoreData
 
 struct JSONManager {
     
-    
-    
     func writeEntityObjectsToURL<T: Encodable>(_ objects: [T]) -> URL {
         
         let fileName: String = String(describing: "All\(T.self)Objects")
@@ -24,10 +22,7 @@ struct JSONManager {
         writeJSONStringToURL(jsonString, fileURL)
         
         return fileURL
-        
     }
-    
-    
     
     private func writeJSONStringToURL(_ jsonString: String, _ fileURL: URL) {
         do {
@@ -36,8 +31,6 @@ struct JSONManager {
             print("Could not write jsonString to URL")
         }
     }
-    
-    
     
     
     // MARK: - Document Directory
@@ -70,9 +63,7 @@ struct JSONManager {
     }
     
     
-    
     // MARK: - Load objects from URL
-    
     
     func returnObjectsFromURL<T: Decodable>(_ url: URL) -> [T] {
         var decodedObjects: [T] = []
@@ -83,14 +74,11 @@ struct JSONManager {
         } catch {
             print(error.localizedDescription)
             print("could not load objects from url")
-            
         }
         return decodedObjects
     }
     
-
-    
-     private func returnDataFromURL(_ url: URL) -> Data {
+    private func returnDataFromURL(_ url: URL) -> Data {
         do {
             let jsonData = try Data(contentsOf: url)
             return jsonData
@@ -102,11 +90,33 @@ struct JSONManager {
         }
     }
     
-    
+}
+
+extension CodingUserInfoKey {
+    static let context = CodingUserInfoKey(rawValue: "context")
 }
 
 
-extension CodingUserInfoKey {
-       static let context = CodingUserInfoKey(rawValue: "context")
+extension JSONManager {
+    
+    static func dictionaryToJsonString<T: Encodable, R: Encodable>(_ dictionary: [T:R]) -> String {
+        do {
+            let jsonData = try JSONEncoder().encode(dictionary)
+            return String(data: jsonData, encoding: .utf8)!
+        } catch {
+            print(error.localizedDescription)
+            return ""
+        }
     }
-
+    
+    static func jsonStringToDictionary<T: Decodable, R: Decodable>(_ jsonString: String, _ tType: T.Type, _ rType: R.Type) -> [T : R] {
+        do {
+            let jsonData = jsonString.data(using: .utf8)
+            return try JSONDecoder().decode([T: R].self, from: jsonData!)
+        } catch {
+            print(error.localizedDescription)
+            return [:]
+        }
+    }
+    
+}

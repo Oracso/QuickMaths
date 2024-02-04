@@ -20,5 +20,5 @@ struct GameCountdownView: View {
 }
 
 #Preview {
-    GameCountdownView(timerProgress: .constant(0.5), secondsRemaining: .constant(30))
+    GameCountdownView(timerProgress: .createBinding(0.5), secondsRemaining: .createBinding(30))
 }

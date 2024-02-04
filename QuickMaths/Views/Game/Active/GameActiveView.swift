@@ -12,19 +12,31 @@ struct GameActiveView: View {
     var body: some View {
         VStack {
             
-            
             Text(gameManager.questionManager.question)
+                .font(.system(size: 36))
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 15)
             
             Text(gameManager.questionManager.result.displayText())
             
-            KeyboardView(inputText: $gameManager.questionManager.inputText, answer: $gameManager.questionManager.answer, questionTries: $gameManager.dataObject.questionAttempts, submitAnswer: gameManager.submitAnswer)
-                .disabled(!gameManager.gameStarted)
+            Spacer()
             
+            KeyboardView(inputText: $gameManager.questionManager.inputText, answer: $gameManager.questionManager.answer, questionTries: $gameManager.dataObject.questionAttempts, submitAnswer: gameManager.submitAnswer, gameType: gameManager.gameType)
+            
+            Button("Cancel Game") {
+                gameManager.stopGame()
+            }
             
         }
     }
 }
 
 #Preview {
-    GameActiveView(gameManager: GameManager(gameType: .addition))
+    VStack {
+        GameCountdownView(timerProgress: .constant(0.5), secondsRemaining: .constant(30))
+        Spacer()
+        GameActiveView(gameManager: GameManager(gameType: .addition))
+        Spacer()
+    }
 }

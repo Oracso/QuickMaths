@@ -11,34 +11,46 @@ struct QuickMathsManager {
     
     let calculator = Calculator()
     
+    func getResult(_ gameType: GameType, _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
+        switch gameType {
+        case .addition:
+            addition(numbers, range)
+        case .subtraction:
+            subtraction(numbers, range)
+        case .multiplication:
+            multiplication(numbers, range)
+        case .division:
+            division(numbers, range)
+        case .whichSign:
+            whichSign(numbers, range)
+        }
+    }
     
-    func simpleAddition(numbers: Int, range: Int) -> (question: String, answer: Int) {
+    func addition( _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
         
         var allNumbers: [Int] = []
         
         for _ in 1...numbers {
-         let n = Int.random(in: 1...range)
+            let n = Int.random(in: 1...range)
             allNumbers.append(n)
         }
         
         let doubleArray = allNumbers.map { Double($0)}
         let answer = calculator.sum(doubleArray)
-       
         
         let strings = allNumbers.map { String($0) }
         
         let joined = strings.joined(separator: " + ")
         
-        return ("\(joined) =", Int(answer))
-        
+        return (joined, answer)
     }
     
-    func simpleSubtraction(numbers: Int, range: Int) -> (question: String, answer: Int) {
+    func subtraction( _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
         
         var allNumbers: [Int] = []
         
         for _ in 1...numbers {
-         let n = Int.random(in: 1...range)
+            let n = Int.random(in: 1...range)
             allNumbers.append(n)
         }
         
@@ -46,108 +58,92 @@ struct QuickMathsManager {
         let first = doubleArray.first!
         
         let answer = (calculator.sum(doubleArray) * -1) + first * 2
-       
         
         let strings = allNumbers.map { String($0) }
         
         let joined = strings.joined(separator: " - ")
         
-        return ("\(joined) =", Int(answer))
-        
+        return (joined, answer)
     }
     
     
-    func simpleMultiplication(numbers: Int, range: Int) -> (question: String, answer: Int) {
+    func multiplication( _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
         
         var allNumbers: [Int] = []
         
         for _ in 1...numbers {
-         let n = Int.random(in: 1...range)
+            let n = Int.random(in: 1...range)
             allNumbers.append(n)
         }
         
         var previousNumber = 1.0
         
         for number in allNumbers {
-          previousNumber = Double(number) * previousNumber
+            previousNumber = Double(number) * previousNumber
         }
-        
         
         let strings = allNumbers.map { String($0) }
         
         let joined = strings.joined(separator: " x ")
         
-        return ("\(joined) =", Int(previousNumber))
-        
+        return (joined, previousNumber)
     }
     
-    func simpleDivision(numbers: Int, range: Int) -> (question: String, answer: Double) {
+    func division( _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
         
         var allNumbers: [Double] = []
         
         for _ in 1...numbers {
-         let n = Int.random(in: 1...range)
+            let n = Int.random(in: 1...range)
             allNumbers.append(Double(n))
         }
-        
         
         var previousNumber = 1.0
         
         for number in allNumbers {
-          previousNumber = Double(number) / previousNumber
+            previousNumber = Double(number) / previousNumber
         }
         
-        
-        let strings = allNumbers.map { String($0) }
-        
+        var strings = allNumbers.map { String(Int($0)) }
+        strings.swapAt(0, 1)
         let joined = strings.joined(separator: " ÷ ")
         
-        return ("\(joined) =", previousNumber)
+        var roundedNumber: Double {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .decimal
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 2
+            let rounded = formatter.string(from: NSNumber(value: previousNumber)) ?? "-666"
+            return Double(rounded) ?? -666
+        }
         
+        return (joined, roundedNumber)
     }
     
     
-//    func whichSign(numbers: Int, range: Int) -> (question: String, answer: Int, sign: Int) {
-//        
-//        // need to change to 4 if bring divide back in
-//        let sign = WhichSign(rawValue: Int.random(in: 1...3))!
-//        
-//        var result : (question: String, answer: Int)
-//        
-//        switch sign {
-//        case .add:
-//           result = simpleAddition(numbers: numbers, range: range)
-//        case .subtract:
-//           result = simpleSubtraction(numbers: numbers, range: range)
-//        case .multiply:
-//           result = simpleMultiplication(numbers: numbers, range: range)
-////        case .divide:
-////            let divisionAnswer = simpleDivision(numbers: numbers, range: range)
-////            return (divisionAnswer.question, divisionAnswer.answer, sign.rawValue)
-//        }
-//        
-//        
-//        let remove: String
-//        switch sign {
-//        case .add:
-//            remove = "+"
-//        case .subtract:
-//            remove = "-"
-//        case .multiply:
-//            remove = "x"
-//        }
-//    
-//        return (result.question.replacingOccurrences(of: remove, with: " ? "), result.answer, sign.rawValue)
-//        
-//    }
-       
+    func whichSign( _ numbers: Int, _ range: Int) -> (question: String, answer: Double) {
         
-    
-
-    
-    
-    
-    
+        let sign = WhichSign.allCases.randomElement() ?? .add
+        
+        var result : (question: String, answer: Double)
+        
+        switch sign {
+        case .add:
+            result = addition(numbers, range)
+        case .subtract:
+            result = subtraction(numbers, range)
+        case .multiply:
+            result = multiplication(numbers, range)
+        case .divide:
+            result = division(numbers, range)
+        }
+        
+        let answer = result.answer.roundToIntOrDouble()
+        
+        let question = result.question.replacingOccurrences(of: sign.gameSymbol(), with: " ? ") + "  =  \(answer)"
+        
+        return (question, Double(sign.rawValue))
+    }
     
 }
 

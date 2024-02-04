@@ -15,15 +15,14 @@ struct GameLogListView: View {
     @ObservedObject var log: GameLog
     var body: some View {
         HStack {
-            Text(log.date!, style: .time)
-            
+            Text(log.listDate)
             Spacer()
             Text("N: \(log.numberFreq) R: \(log.numberRange)")
             Text("(\(log.gameSymbol()))")
             Text("(\(log.duration)s)")
-            Text("Score: \(log.correctAnswers)")
-                
             
+            Text("Score: \(log.correctAnswers)")
+                .multilineTextAlignment(.center)
         }
     }
 }

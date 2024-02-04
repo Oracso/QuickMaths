@@ -8,11 +8,28 @@
 import SwiftUI
 
 struct InputTextBox: View {
+    @Binding var text: String
+    var whichSign = false
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Rectangle()
+                .foregroundStyle(.clear)
+                .containerRelativeFrame(.horizontal, count: 2, spacing: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                .frame(maxHeight: 60)
+                .border(.gray).opacity(0.4)
+            if whichSign {
+                Text(WhichSign.getSymbol(text))
+                    .font(.system(size: 36))
+            } else {
+                Text(text)
+                    .font(.system(size: 36))
+            }
+                
+        }
+        
     }
 }
 
 #Preview {
-    InputTextBox()
+    InputTextBox(text: .createBinding("text"))
 }

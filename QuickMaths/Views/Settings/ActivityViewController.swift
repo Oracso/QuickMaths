@@ -17,28 +17,16 @@ struct ActivityViewController: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIActivityViewController {
         let activityView = UIActivityViewController(activityItems: [], applicationActivities: nil)
         return activityView
-        
-        
     }
     
     func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {
         
     }
     
-    
     func initView() {
-
         let avc = UIActivityViewController(activityItems: activityItems, applicationActivities: applicationActivities)
-
         UIApplication.shared.currentUIWindow()?.rootViewController?.present(avc, animated: true, completion: nil)
-        
     }
-    
-   
- 
-    
-    
-    
     
 }
 

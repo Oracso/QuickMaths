@@ -8,38 +8,24 @@
 import SwiftUI
 
 struct GameSelectionView: View {
-    @EnvironmentObject var database: Database
+    @EnvironmentObject var ads: AppDataStore
     var body: some View {
         NavigationStack {
             List {
                 ForEach(GameType.allCases) { gameType in
                     NavigationLink {
-//                        GameView(gameManager: <#T##GameManager#>)
-//                        GameConfigView(gameType: gameType)
+                        GameView(gameManager: GameManager(gameType: gameType))
                     } label: {
-                        Text(gameType.gameName)
+                        Text(gameType.rawValue.capitalized)
                     }
                 }
-                
-                
-                
             }
             .navigationTitle("Games")
-            
-            
- 
-            
-            
-            
-        
-        
-        
-            
         }
     }
 }
 
 #Preview {
     GameSelectionView()
-        .environmentObject(Database())
+        .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
 }

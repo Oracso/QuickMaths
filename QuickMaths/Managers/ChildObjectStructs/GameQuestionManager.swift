@@ -13,10 +13,9 @@ struct GameQuestionManager {
     
     var inputText: String = " "
     
-    var answer: Int?
-    var realAnswer: Int = 0
+    var answer: Double?
+    var realAnswer: Double = 0
     
-//    var result: String = "Are you ready?"
     var result: GameQuestionResult = .setup
     
 }

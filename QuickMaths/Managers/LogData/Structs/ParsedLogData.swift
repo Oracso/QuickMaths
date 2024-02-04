@@ -11,7 +11,31 @@ struct ParsedLogData: Identifiable {
     let date: Date
     var id: Date { date }
     
-    var logAttempts: [QuestionAttempts]
-    var logDurations: [QuestionDuration]
+    let questionsLogData: [QuestionLogData]
+}
+
+
+extension ParsedLogData {
+    static let example = GameLog.example().parseLogData()
+}
+
+extension ParsedLogData {
+    
+    func logQuestions() -> [Int: String]{
+        return Dictionary(uniqueKeysWithValues: questionsLogData.map({ ($0.questionNumber, $0.question) }))
+    }
+    
+    func logAnswers() -> [Int: Double]{
+        return Dictionary(uniqueKeysWithValues: questionsLogData.map({ ($0.questionNumber, $0.answer) }))
+    }
+    
+    func logAttempts() -> [Int: Int]{
+        return Dictionary(uniqueKeysWithValues: questionsLogData.map({ ($0.questionNumber, $0.attempts) }))
+    }
+    
+    func logDurations() -> [Int: Int ]{
+        return Dictionary(uniqueKeysWithValues: questionsLogData.map({ ($0.questionNumber, $0.duration) }))
+    }
     
 }
+

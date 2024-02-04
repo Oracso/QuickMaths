@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 struct CoreDataModifier {
 
     let context: NSManagedObjectContext
@@ -17,43 +16,31 @@ struct CoreDataModifier {
         self.context = context
     }
     
-    
-    
-    // MARK: - Create Entity
-    
-    func createEntity(_ entityType: EntityType) -> NSManagedObject {
-        switch entityType {
-        case .gameLog:
-            return createGameLog()
-        case .XXX:
-            return createXXX()
-        }
+    func createGameLog(date: Date, duration: Int, gameType: GameType, numberFreq: Double, numberRange: Double, questionsAsked: Int, correctAnswers: Int, incorrectAnswers: Int, gameQuestionAttempts: [Int: Int], gameQuestionDurations: [Int: Int], gameQuestions: [Int : String], gameAnswers: [Int: Double], notes: String? = nil) -> GameLog {
+        let gameLog = GameLog(context: context)
+        gameLog.id = UUID()
+        
+        gameLog.date = date
+        gameLog.duration = Int64(duration)
+        
+        gameLog.gameType = gameType.rawValue
+        
+        gameLog.numberFreq = Int64(numberFreq)
+        gameLog.numberRange = Int64(numberRange)
+        
+        gameLog.questionsAsked = Int64(questionsAsked)
+        
+        gameLog.correctAnswers = Int64(correctAnswers)
+        gameLog.incorrectAnswers = Int64(incorrectAnswers)
+        
+        gameLog.gameQuestionAttempts = JSONManager.dictionaryToJsonString(gameQuestionAttempts)
+        gameLog.gameQuestionDurations = JSONManager.dictionaryToJsonString(gameQuestionDurations)
+        
+        gameLog.gameQuestions = JSONManager.dictionaryToJsonString(gameQuestions)
+        gameLog.gameAnswers = JSONManager.dictionaryToJsonString(gameAnswers)
+        
+        return gameLog
     }
-    
-    
-    func createGameLog() -> GameLog {
-        let example = GameLog(context: context)
-        example.id = UUID()
-        return example
-    }
-    
-    
-    func createXXX() -> XXX {
-        let example = XXX(context: context)
-        example.id = UUID()
-        return example
-    }
-    
-
-
-
-    // MARK: - Delete Entity
-    
-    // func deleteObject(object: NSManagedObject) {
-    //     context.delete(object)
-    // }
-    
-    
     
 }
 

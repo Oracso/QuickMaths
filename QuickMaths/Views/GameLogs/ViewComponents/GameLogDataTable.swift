@@ -8,11 +8,25 @@
 import SwiftUI
 
 struct GameLogDataTable: View {
+    let parsedLogData: ParsedLogData
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Table(parsedLogData.questionsLogData) {
+            TableColumn("Question Number") { log in
+                Text(String(log.questionNumber))
+            }
+            TableColumn("Question", value: \.question)
+            TableColumn("Attempts") { log in
+                Text(String(log.attempts))
+            }
+            TableColumn("Duration") { log in
+                Text(String(log.duration))
+            }
+        }
     }
 }
 
 #Preview {
-    GameLogDataTable()
+    NavigationStack {
+        GameLogDataTable(parsedLogData: .example)
+    }
 }

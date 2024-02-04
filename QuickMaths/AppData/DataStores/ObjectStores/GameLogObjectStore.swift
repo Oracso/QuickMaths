@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 class GameLogObjectStore: NSObject, ObservableObject {
     
     @Published var gameLogs: [GameLog] = []

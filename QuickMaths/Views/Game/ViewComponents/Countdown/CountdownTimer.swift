@@ -14,14 +14,12 @@ struct CountdownTimer: View {
             Circle()
                 .foregroundStyle(.gray)
                 .opacity(0.5)
-            
             Text("\(secondsRemaining)")
         }
         .frame(maxWidth: 40)
-        
     }
 }
 
 #Preview {
-    CountdownTimer(secondsRemaining: .constant(10))
+    CountdownTimer(secondsRemaining: .createBinding(10))
 }

@@ -15,31 +15,41 @@ struct GameView: View {
         VStack {
             switch gameManager.gameStatus {
             case .config:
-                
+                GameConfigView(gameManager: gameManager)
             case .active:
-                GameActiveView(gameManager: gameManager)
+                // TODO: Turn this and below into view
+                VStack {
+                    GameCountdownView(timerProgress: $gameManager.timerManager.timerProgress, secondsRemaining: $gameManager.timerManager.secondsRemaining)
+                    Spacer()
+                    GameActiveView(gameManager: gameManager)
+                    Spacer()
+                }
+                .navigationBarBackButtonHidden()
+                .toolbar(.hidden, for: .tabBar)
             case .results:
-                GameResultsView(gameManager: gameManager)
+                VStack {
+                    GameCountdownView(timerProgress: $gameManager.timerManager.timerProgress, secondsRemaining: $gameManager.timerManager.secondsRemaining)
+                    Spacer()
+                    GameResultsView(gameManager: gameManager)
+                    Spacer()
+                }
+                .navigationBarBackButtonHidden()
+                .toolbar(.hidden, for: .tabBar)
             case .stop:
-                dismiss()
+                // TODO: Clunky but works
+                Text("")
+//                EmptyView()
+                    .onAppear() {
+                        dismiss()
+                        
+                    }
             }
-            GameCountdownView(timerProgress: $gameManager.timerManager.timerProgress, secondsRemaining: $gameManager.timerManager.secondsRemaining)
             
-//            Spacer()
-//            
-//            if gameManager.gameStarted {
-//                
-//            } else {
-//                
-//            }
-//            
-//            Spacer()
             
         }
         
         
-        .navigationBarBackButtonHidden()
-        .toolbar(.hidden, for: .tabBar)
+        
         
     }
 }

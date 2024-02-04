@@ -8,11 +8,30 @@
 import SwiftUI
 
 struct GameLogDataView: View {
+    let parsedLogData: ParsedLogData
+    @State private var isExpanded = true
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Section("Game Log Data:", isExpanded: $isExpanded) {
+            ForEach(parsedLogData.questionsLogData) { questionData in
+                HStack {
+                    Text("\(questionData.questionNumber))")
+                    Text("\"\(questionData.question) = \(questionData.answer.roundToIntOrDouble())\"")
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                    HStack {
+                        Text("Attempts: \(questionData.attempts)")
+                        Text("(\(questionData.duration)s)")
+                    }
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    GameLogDataView()
+    NavigationStack {
+        List {
+            GameLogDataView(parsedLogData: .example)
+        }
+    }
 }

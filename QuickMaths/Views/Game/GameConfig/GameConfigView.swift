@@ -8,26 +8,28 @@
 import SwiftUI
 
 struct GameConfigView: View {
-    let gameType: GameType
-    @StateObject var gameConfig = GameConfigObject()
+    @ObservedObject var gameManager: GameManager
     var body: some View {
         VStack {
             
-            TimerConfigView(timerLength: $gameConfig.timerLength)
+            GameConfigHighScoreView(gameManager: gameManager)
+            
+            Spacer()
+            
+            TimerConfigView(timerLength: $gameManager.timerManager.timerLength)
                 .padding(.bottom)
             
-            GameConfigSlidersView(gameConfig: gameConfig)
+            GameConfigSlidersView($gameManager.numberFreq, $gameManager.numberRange)
                 .padding(.bottom)
             
-            NavigationLink {
-//                GameView(gameManager: .createGameManager(gameType, gameConfig))
+            Button {
+                gameManager.configureGame()
             } label: {
-                Text("Play")
+                GameButton(text: "Play", count: 4)
             }
-
+            .disabled(gameManager.timerManager.timerLength == .zero)
             
-            // TODO: - Add This
-//            GameConfigHighScoreView()
+            Spacer()
             
         }
         
@@ -38,6 +40,7 @@ struct GameConfigView: View {
 
 #Preview {
     NavigationStack {
-        GameConfigView(gameType: .addition)
+        GameConfigView(gameManager: GameManager(gameType: .addition))
+            .environmentObject(AppDataStore(CoreDataManager.preview.container.viewContext))
     }
 }

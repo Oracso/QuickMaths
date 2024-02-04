@@ -9,30 +9,22 @@ import SwiftUI
 
 struct SaveGameToggle: View {
     @Binding var saveGame: Bool
-    //    @State private var offset: CGFloat = -18
     var body: some View {
         ZStack {
-            
             Capsule()
                 .frame(width:80, height:44)
-                .foregroundColor(Color(saveGame ? #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1028798084) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6039008336)))
-            //                .foregroundColor(.blue)
-            
+                .foregroundStyle(Color(saveGame ? #colorLiteral(red: 0.02882496826, green: 0.9960961938, blue: 0.004087608308, alpha: 1) : #colorLiteral(red: 0.9977727532, green: 0.002769516082, blue: 0.1662880182, alpha: 1)))
             ZStack {
                 Circle()
                     .frame(width:40, height:40)
                     .foregroundColor(.white)
-                
-                Image(systemName: saveGame ? "sun.max.fill" : "moon.fill")
+                Image(systemName: saveGame ? "checkmark" : "xmark")
             }
             .shadow(color: .black.opacity(0.14), radius: 4, x: 0, y: 2)
             .offset(x:saveGame ? 18 : -18)
-            //            .offset(x: offset)
             .padding(24)
-            //            .animation(Animation.spring(), value: true)
-            .animation(.spring())
-            
         }
+        .animation(.spring(), value: saveGame)
         
         .onTapGesture {
             saveGame.toggle()

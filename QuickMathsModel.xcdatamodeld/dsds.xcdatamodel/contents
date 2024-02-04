@@ -4,8 +4,10 @@
         <attribute name="correctAnswers" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="duration" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="gameAnswers" optional="YES" attributeType="String"/>
         <attribute name="gameQuestionAttempts" optional="YES" attributeType="String"/>
         <attribute name="gameQuestionDurations" optional="YES" attributeType="String"/>
+        <attribute name="gameQuestions" optional="YES" attributeType="String"/>
         <attribute name="gameType" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="incorrectAnswers" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>

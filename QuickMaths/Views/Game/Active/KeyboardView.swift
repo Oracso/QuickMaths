@@ -10,13 +10,15 @@ import SwiftUI
 struct KeyboardView: View {
     
     @Binding var inputText: String
-    @Binding var answer: Int?
+    @Binding var answer: Double?
     @Binding var questionTries: Int
     
     let submitAnswer: () -> Void
     
+    let gameType: GameType
+    
     func convertAnswerToInt() {
-        answer = Int(inputText)
+        answer = Double(inputText)
         submitAnswer()
     }
     
@@ -32,6 +34,21 @@ struct KeyboardView: View {
     }
     
     func pressButton(_ num: Int) {
+        switch gameType {
+        case .addition:
+            normalSubmit(num)
+        case .subtraction:
+            subtractionSubmit(num)
+        case .multiplication:
+            normalSubmit(num)
+        case .division:
+            divisionSubmit(num)
+        case .whichSign:
+            whichSignSubmit(num)
+        }
+    }
+    
+    func normalSubmit(_ num: Int) {
         if inputText == " " {
             inputText = String(num)
         } else {
@@ -39,101 +56,161 @@ struct KeyboardView: View {
         }
     }
     
+    func divisionSubmit(_ num: Int) {
+        if inputText == " " {
+            if num == 10 {
+                inputText = "0."
+            } else {
+                inputText = String(num)
+            }
+        } else {
+            if inputText == "0." {
+                if num == 10 {
+                    inputText = " "
+                } else {
+                    inputText += String(num)
+                }
+            } else {
+                if inputText.contains(".") {
+                    if num == 10 {
+                        // nil
+                    } else {
+                        inputText += String(num)
+                    }
+                } else {
+                    if num == 10 {
+                        inputText += "."
+                    } else {
+                        inputText += String(num)
+                    }
+                }
+            }
+        }
+    }
+    
+    func subtractionSubmit(_ num: Int) {
+        if inputText == " " {
+            if num == -1 {
+                inputText = "-"
+            } else {
+                inputText = String(num)
+            }
+        } else {
+            if inputText == "-" {
+                if num == -1 {
+                    inputText = " "
+                } else {
+                    inputText = String(num * -1)
+                }
+            } else {
+                if num == -1 {
+                    inputText = String(Int(inputText)! * -1)
+                } else {
+                    inputText += String(num)
+                }
+            }
+        }
+    }
+    
+    func whichSignSubmit(_ num: Int) {
+        if inputText == " " {
+            inputText = String(num)
+        } else {
+            if gameType == .whichSign {
+                inputText = String(num)
+            } else {
+                inputText += String(num)
+            }
+        }
+    }
+    
+    func submitButton() {
+        if inputText != " " {
+            questionTries += 1
+            convertAnswerToInt()
+        }
+    }
     
     var body: some View {
         
-        
-        
         VStack {
-            
-                        Text(inputText)
-            
-            LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                ForEach((1...9), id: \.self) { num in
+            if gameType == .whichSign {
+                Spacer()
+                InputTextBox(text: $inputText, whichSign: true)
+                Spacer()
+                HStack {
+                    ForEach(WhichSign.allCases) { sign in
+                        Button {
+                            pressButton(sign.rawValue)
+                        } label: {
+                            KeyboardButtonView(sign.gameSymbol())
+                        }
+                    }
+                }
+                Spacer()
+            } else {
+                InputTextBox(text: $inputText)
+                
+                LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                    ForEach((1...9), id: \.self) { num in
+                        Button {
+                            pressButton(num)
+                        } label: {
+                            KeyboardButtonView(String(num))
+                        }
+                    }
+                }
+                
+                LazyVGrid(columns: gridItemLayout, spacing: 0) {
+                    if gameType == .subtraction {
+                        Button {
+                            pressButton(-1)
+                        } label: {
+                            KeyboardButtonView("-")
+                        }
+                    } else {
+                        Spacer()
+                    }
                     
                     Button {
-                        pressButton(num)
-//                        inputText += String(num)
+                        pressButton(0)
                     } label: {
-                        Text(String(num))
+                        KeyboardButtonView(String(0))
                     }
-                    .keyboardButton()
                     
-                    .border(.red)
+                    if gameType == .division {
+                        Button {
+                            pressButton(10)
+                        } label: {
+                            KeyboardButtonView("•")
+                        }
+                    } else {
+                        Spacer()
+                    }
+                    
                 }
             }
             
-            
             LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                
-                Spacer()
-                
-                Button {
-                    pressButton(0)
-//                    inputText += String(0)
-                } label: {
-                    Text(String("0"))
-                }
-                
-                .keyboardButton()
-                
-                Spacer()
-                
-            }
-            
-            
-            LazyVGrid(columns: gridItemLayout, spacing: 0) {
-                
                 Button {
                     backspace()
                 } label: {
-                    Image(systemName: "arrow.left")
+                    KeyboardButtonView("arrow.left", true)
                 }
-                
-                
-                .keyboardButton()
-                
                 Spacer()
-                
                 Button {
-                    //                    submitButton.toggle()
-                    questionTries += 1
-                    convertAnswerToInt()
+                    submitButton()
                 } label: {
-                    Text(String("GO"))
-                        .keyboardButton()
+                    KeyboardButtonView("GO")
                 }
-                
-                
             }
             
-            
-            
         }
-        
-        
-        
         
     }
 }
 
 #Preview {
-    KeyboardView(inputText: .constant(" "), answer: .constant(nil), questionTries: .constant(0), submitAnswer: {})
+    KeyboardView(inputText: .createBinding(" "), answer: .createBinding(nil), questionTries: .createBinding(0), submitAnswer: {}, gameType: .addition)
 }
 
-extension View {
-    func keyboardButton() -> some View {
-        modifier(KeyboardButtonModifier())
-    }
-}
-
-
-
-struct KeyboardButtonModifier: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(.system(size: 30))
-            .frame(width: 50, height: 80)
-            .cornerRadius(10)
-      }
-}
