@@ -2,7 +2,7 @@
 //  GameLog+CoreDataProperties.swift
 //  QuickMaths
 //
-//  Created by Oscar Hardy on 31/01/2024.
+//  Created by Oscar Hardy on 04/02/2024.
 //
 //
 
@@ -28,10 +28,11 @@ extension GameLog {
     @NSManaged public var numberFreq: Int64
     @NSManaged public var numberRange: Int64
     @NSManaged public var questionsAsked: Int64
+    @NSManaged public var gameAnswers: String?
+    @NSManaged public var gameQuestions: String?
 
 }
 
 //extension GameLog : Identifiable {
 //
 //}
-
