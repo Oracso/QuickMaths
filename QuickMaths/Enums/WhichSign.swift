@@ -12,7 +12,6 @@ enum WhichSign: Int, Identifiable, CaseIterable {
     case subtract = 2
     case multiply = 3
     case divide = 4
-    
     var id: WhichSign { self }
 }
 
