@@ -54,7 +54,6 @@
 		D375B4672B6A86D800E33710 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B3F72B6A86D800E33710 /* GameManager.swift */; };
 		D375B4682B6A86D800E33710 /* GameQuestionResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B3F92B6A86D800E33710 /* GameQuestionResult.swift */; };
 		D375B4692B6A86D800E33710 /* GameType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B3FA2B6A86D800E33710 /* GameType.swift */; };
-		D375B46B2B6A86D800E33710 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D375B3FD2B6A86D800E33710 /* Preview Assets.xcassets */; };
 		D375B46D2B6A86D800E33710 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B4002B6A86D800E33710 /* Extensions.swift */; };
 		D375B46E2B6A86D800E33710 /* ReadMe.md in Resources */ = {isa = PBXBuildFile; fileRef = D375B4012B6A86D800E33710 /* ReadMe.md */; };
 		D375B4902B6A86D800E33710 /* QuickMathsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D375B4332B6A86D800E33710 /* QuickMathsApp.swift */; };
@@ -126,7 +125,6 @@
 		D375B3F72B6A86D800E33710 /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		D375B3F92B6A86D800E33710 /* GameQuestionResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameQuestionResult.swift; sourceTree = "<group>"; };
 		D375B3FA2B6A86D800E33710 /* GameType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameType.swift; sourceTree = "<group>"; };
-		D375B3FD2B6A86D800E33710 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D375B4002B6A86D800E33710 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D375B4012B6A86D800E33710 /* ReadMe.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		D375B4332B6A86D800E33710 /* QuickMathsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuickMathsApp.swift; sourceTree = "<group>"; };
@@ -348,15 +346,6 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
-		D375B3FC2B6A86D800E33710 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D375B3FD2B6A86D800E33710 /* Preview Assets.xcassets */,
-			);
-			name = "Preview Content";
-			path = "QuickMathstt/Preview Content";
-			sourceTree = "<group>";
-		};
 		D375B3FE2B6A86D800E33710 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,7 +485,6 @@
 				D375B3EE2B6A86D800E33710 /* Managers */,
 				D375B3F82B6A86D800E33710 /* Enums */,
 				D375B3FE2B6A86D800E33710 /* Extensions */,
-				D375B3FC2B6A86D800E33710 /* Preview Content */,
 				D37ABBA22B69714800529F1F /* Assets.xcassets */,
 				D37ABBA42B69714800529F1F /* Preview Content */,
 			);
@@ -569,7 +557,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D375B46B2B6A86D800E33710 /* Preview Assets.xcassets in Resources */,
 				D37ABBA62B69714800529F1F /* Preview Assets.xcassets in Resources */,
 				D37ABBA32B69714800529F1F /* Assets.xcassets in Resources */,
 				D375B46E2B6A86D800E33710 /* ReadMe.md in Resources */,
