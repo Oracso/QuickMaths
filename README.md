@@ -23,14 +23,3 @@ A timed and customisable arithmetic app that facilitates post-game analysis.
 <img src="PreviewResources/Screenshot5.png" width="230"  title="Game View">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </p>
 <br></br>
-
-<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        float-left {
-            float: left;
-            margin-right: 20px;
-        }
-    </style>
