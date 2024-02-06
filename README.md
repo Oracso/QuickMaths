@@ -24,7 +24,7 @@ A timed and customisable arithmetic app that facilitates post-game analysis.
         <li><h3><a href="#screenshots">Screenshots</a></h3></li>
         <li><h3><a href="#licensing">Licensing</a></h3></li>
     </ul>
-    </details>
+</details>
 &nbsp;
 
 # Project Progression
