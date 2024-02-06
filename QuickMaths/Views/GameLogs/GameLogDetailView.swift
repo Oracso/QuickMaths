@@ -52,6 +52,10 @@ struct GameLogDetailView: View {
         
         .navigationTitle(log.formattedDate)
         
+        .onAppear() {
+            print(log)
+        }
+        
     }
 }
 

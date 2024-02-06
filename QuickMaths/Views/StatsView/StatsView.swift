@@ -14,6 +14,7 @@ struct StatsView: View {
     func updateFilters() {
         statsDataManager.updateArrayFilters(ads.objects.gameLogOS.gameLogs)
         statsDataManager.highScoreStats()
+        statsDataManager.incorrectStats()
     }
     
     var body: some View {
@@ -60,7 +61,7 @@ struct StatsView: View {
                 }
                 
                 Section("Charts:") {
-                    if statsDataManager.filteredLogs.isEmpty == false {
+                    if statsDataManager.filteredLogs.count > 1 {
                         LineChartView(chartData: ChartDataManager.gameHighScores(statsDataManager.filteredLogs))
                             .frame(minHeight: 200)
                     }

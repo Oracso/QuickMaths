@@ -27,6 +27,12 @@ struct CoreDataPreviewManager {
         _ = GameLog.example2(context)
         _ = GameLog.example3(context)
         _ = GameLog.example4(context)
+        _ = GameLog.example5(context)
+        _ = GameLog.example6(context)
+        _ = GameLog.example7(context)
+        _ = GameLog.example8(context)
+        _ = GameLog.example9(context)
+        _ = GameLog.example10(context)
         context.saveIfChanges()
     }
     
