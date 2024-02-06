@@ -35,6 +35,7 @@
 		D30EBA372B6E3C2700EDB8DE /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EBA362B6E3C2700EDB8DE /* StatsView.swift */; };
 		D30EBA442B6E800B00EDB8DE /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EBA432B6E800B00EDB8DE /* Double.swift */; };
 		D30EBA462B6ED71C00EDB8DE /* GameButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30EBA452B6ED71C00EDB8DE /* GameButton.swift */; };
+		D320470B2B7210FA0034BA4C /* GameLogExamples.swift in Sources */ = {isa = PBXBuildFile; fileRef = D320470A2B7210FA0034BA4C /* GameLogExamples.swift */; };
 		D35B983A2B6CED61004637F7 /* GameLogDataTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35B98392B6CED61004637F7 /* GameLogDataTable.swift */; };
 		D35B983E2B6D0DC9004637F7 /* KeyboardButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35B983D2B6D0DC9004637F7 /* KeyboardButtonView.swift */; };
 		D35B98402B6D338B004637F7 /* GameScoreBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35B983F2B6D338B004637F7 /* GameScoreBoardView.swift */; };
@@ -106,6 +107,7 @@
 		D30EBA362B6E3C2700EDB8DE /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		D30EBA432B6E800B00EDB8DE /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		D30EBA452B6ED71C00EDB8DE /* GameButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameButton.swift; sourceTree = "<group>"; };
+		D320470A2B7210FA0034BA4C /* GameLogExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogExamples.swift; sourceTree = "<group>"; };
 		D35B98392B6CED61004637F7 /* GameLogDataTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogDataTable.swift; sourceTree = "<group>"; };
 		D35B983D2B6D0DC9004637F7 /* KeyboardButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButtonView.swift; sourceTree = "<group>"; };
 		D35B983F2B6D338B004637F7 /* GameScoreBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScoreBoardView.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				D3004DAE2B6F85E400CFE813 /* GameLogExtensions.swift */,
+				D320470A2B7210FA0034BA4C /* GameLogExamples.swift */,
 			);
 			path = EntityExtensions;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				D375B4A92B6A86D800E33710 /* ProgressBar.swift in Sources */,
 				D35B98492B6D7327004637F7 /* StatsDataManager.swift in Sources */,
 				D375B4B72B6A894700E33710 /* AllGameLogsView.swift in Sources */,
+				D320470B2B7210FA0034BA4C /* GameLogExamples.swift in Sources */,
 				D375B4632B6A86D800E33710 /* GameConfigObject.swift in Sources */,
 				D3004DDD2B6F95C100CFE813 /* SettingsView.swift in Sources */,
 				D375B4902B6A86D800E33710 /* QuickMathsApp.swift in Sources */,

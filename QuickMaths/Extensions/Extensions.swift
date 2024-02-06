@@ -35,3 +35,10 @@ public extension UIApplication {
     }
 }
 
+
+extension Date {
+    func daysDif(_ days: Int) -> Date {
+        let seconds = Double(-86400 * days)
+        return self.addingTimeInterval(seconds)
+    }
+}
