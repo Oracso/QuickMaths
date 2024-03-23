@@ -61,6 +61,11 @@ If required, version specific logic can be written to facilitate any large data 
 ## Past Problems:
 
 
+#### - <ins>Game UI hierarchy to support ObservableObjects</ins>
+
+The game UI was tailored alongside the development of the **ObservableObjects** to ensure that data could be shared easily by all views that required it. 
+
+
 
 #### - <ins>Hierarchy of Data Collection Objects</ins>
 
@@ -70,8 +75,6 @@ Deciding which elements to extract and which to keep specific took a number of i
 #### - <ins>Saving Complex Game Data in String Format with CoreData</ins>
 
 It was decided that the simplest method of saving game data in an accessible format was to convert **Dictionaries** into **Strings**. Various methods were tested until the version currently seen, a complication was ensuring that each measured metric was comprehensible when retrieved independently but also combined easily with other variables. The various stages of this process were written and amalgamated into simple generic code that is utilised throughout the project, meaning that if the logic or the data structure itself changes, the majority of the project is not affected.
-
-
 
 
 
