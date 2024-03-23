@@ -41,10 +41,37 @@ Designed to enhance mathematical dexterity, users can choose from a variety of g
 #### - <ins>Preset Analysis Parameters</ins>
 
 
+#### - <ins>Additional Customised Game Types</ins>
+
+Flexibility would be ideal here, however figuring out how to incorporate variable logic at the level of individual questions and how to relate but also separate the post-gamne analysis within efficient means will need some consideration. This would be to ensure that current app structure is not greatly influenced and by doing so will also strengthen the app's structure and allow for the smooth implementation of future updates.
+
+
+
+
 ## Current Difficulties:
 
 
 ## Past Problems:
+
+
+
+#### - <ins>Hierarchy of Data Collection Objects</ins>
+
+Deciding which elements to extract and which to keep specific took a number of iterations, how to group which various also took some consideration. Ultimately the approach was to consider which elements were shared across game types but also which variables were to likely to actually be used in other parts of the project. 
+
+
+#### - <ins>Saving Complex Game Data in String Format with CoreData</ins>
+
+It was decided that the simplest method of saving game data in an accessible format was to convert **Dictionaries** into **Strings**. Various methods were tested until the version currently seen, a complication was ensuring that each measured metric was comprehensible when retrieved independently but also combined easily with other variables. The various stages of this process were written and amalgamated into simple generic code that is utilised throughout the project, meaning that if the logic or the data structure itself changes, the majority of the project is not affected.
+
+
+
+
+
+#### - <ins>Keyboard Text Input Logic</ins>
+
+Each input **String** needed to be a handled differently depending on the game type. The input **String** need to operate as though it was a number, meaning that it needed to respond as would be expected of a calculator when using things such as a decimal places or minus numbers. This involved successive *if-else* statements unique to each game type to handle the starting condition and ensure that the input **String** was converted to the expected value in a format that could be understood by the mathematical game logic.  
+
 
 
 
