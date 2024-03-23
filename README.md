@@ -50,6 +50,13 @@ Flexibility would be ideal here, however figuring out how to incorporate variabl
 
 ## Current Difficulties:
 
+#### - <ins>Migrating Useful RawData Over Successive Versions</ins>
+
+Ensuring that data is kept intelligible and usable over successive versions is extremely important - what's the point in a track app if it can no longer use archaic data? The address this I've tried to keep data in as raw a format as possible, as this enables more comprehensive analysis in the future and ensures that data can be utilised in whatever means possible despite current limitations. 
+
+If required, version specific logic can be written to facilitate any large data structure changes. Code would need to be written to avoid crashes when new data fields are left blank, with analysis logic written in order to understand the different between *null* and *missing* values.
+
+
 
 ## Past Problems:
 
