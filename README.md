@@ -16,7 +16,13 @@ A timed and adjustable arithmetic app that enhances numerical/mathematical profi
 
 ### Use Case:
 
-Designed to enhance mathematical dexterity, users can choose from a variety of game types, each allowing for customisation of variables such as number range and frequency. This capability allows users to hone their skills in unique and interesting ways while receiving comprehensive post-game analysis to track progress and identify areas for improvement. A thorough statistics page offers users complete control over filtering variables, allowing them to tailor their analysis within specific parameters and display their results with intuitive graphical representations. Whether simply for enjoyment, for tracking and evaluating performance over time or for strengthening numerical proficiency, this app is a personalised and indispensable tool for individuals looking to promote mathematical fluency and independent learning.
+Designed to enhance mathematical dexterity, users can choose from a variety of game types, each allowing for customisation of variables such as number range and frequency. 
+
+This capability allows users to hone their skills in unique and interesting ways while receiving comprehensive post-game analysis to track progress and identify areas for improvement. 
+
+A thorough statistics page offers users complete control over filtering variables, allowing them to tailor their analysis within specific parameters and display their results with intuitive graphical representations. 
+
+Whether simply for enjoyment, for tracking and evaluating performance over time or for strengthening numerical proficiency, this app is a personalised and indispensable tool for individuals looking to promote mathematical fluency and independent learning.
 
 
 <details open>
