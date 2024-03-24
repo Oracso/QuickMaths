@@ -11,7 +11,7 @@
 
 ### Overview:
 
-A timed and adjustable arithmetic app that enhances numerical/mathematical proficiency and provides detailed post-game analysis. 
+A timed and adjustable arithmetic app that enhances mathematical proficiency and provides detailed post-game analysis. 
 
 
 ### Use Case:
